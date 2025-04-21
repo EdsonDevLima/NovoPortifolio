@@ -129,7 +129,7 @@ section {
   width: 100%;
   font-size: 40px;
   text-align: center;
-  margin: 25px;
+  margin: 10px auto;
 }
 .projects {
   display: grid;
@@ -323,5 +323,18 @@ footer {
   }
   .navlinks {
     display: none;
+  }
+
+  #sobre {
+    margin: 0;
+    padding: 0;
+  }
+  #skills {
+    margin: 0;
+    padding: 0;
+  }
+  #projetos {
+    margin: 0;
+    padding: 0;
   }
 }
