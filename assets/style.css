@@ -593,6 +593,12 @@
       color: var(--accent);
     }
 
+    .project-status {
+      color: var(--accent2);
+      border-color: rgba(76,240,200,0.2);
+      pointer-events: none;
+    }
+
     #contato {
       background: var(--bg2);
     }
