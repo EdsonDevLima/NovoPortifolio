@@ -211,6 +211,30 @@
         <div class="project-num">01</div>
         <div>
           <h3 class="project-title">Atlas CRM</h3>
+          <div class="project-media project-carousel" data-carousel aria-label="Carrossel do projeto Atlas CRM">
+            <div class="project-carousel-track">
+              <button class="project-slide active" type="button" data-slide data-full-src="./assets/imgs/atlasCrm/1.png" data-full-alt="Tela principal do Atlas CRM">
+                <img src="./assets/imgs/atlasCrm/1.png" alt="Tela principal do Atlas CRM" />
+              </button>
+              <button class="project-slide" type="button" data-slide data-full-src="./assets/imgs/atlasCrm/2.png" data-full-alt="Dashboard do Atlas CRM">
+                <img src="./assets/imgs/atlasCrm/2.png" alt="Dashboard do Atlas CRM" />
+              </button>
+              <button class="project-slide" type="button" data-slide data-full-src="./assets/imgs/atlasCrm/3.png" data-full-alt="Fluxo de vendas do Atlas CRM">
+                <img src="./assets/imgs/atlasCrm/3.png" alt="Fluxo de vendas do Atlas CRM" />
+              </button>
+              <button class="project-slide" type="button" data-slide data-full-src="./assets/imgs/atlasCrm/4.png" data-full-alt="Visão complementar do Atlas CRM">
+                <img src="./assets/imgs/atlasCrm/4.png" alt="Visão complementar do Atlas CRM" />
+              </button>
+            </div>
+            <button class="project-carousel-btn prev" type="button" data-carousel-prev aria-label="Imagem anterior">‹</button>
+            <button class="project-carousel-btn next" type="button" data-carousel-next aria-label="Próxima imagem">›</button>
+            <div class="project-carousel-dots" aria-label="Selecionar imagem do projeto">
+              <button class="project-carousel-dot active" type="button" data-carousel-dot="0" aria-label="Ir para imagem 1"></button>
+              <button class="project-carousel-dot" type="button" data-carousel-dot="1" aria-label="Ir para imagem 2"></button>
+              <button class="project-carousel-dot" type="button" data-carousel-dot="2" aria-label="Ir para imagem 3"></button>
+              <button class="project-carousel-dot" type="button" data-carousel-dot="3" aria-label="Ir para imagem 4"></button>
+            </div>
+          </div>
           <p class="project-desc">
             Sistema completo de gerenciamento de vendas com autenticação JWT,
             dashboard interativo e integrações com APIs externas. Pipeline de
@@ -237,6 +261,14 @@
         <div class="project-num">02</div>
         <div>
           <h3 class="project-title">Atlas vendas</h3>
+          <div class="project-media project-preview">
+            <div class="project-preview-badge">Preview em breve</div>
+            <div class="project-preview-content">
+              <span class="project-preview-kicker">E-commerce integrado</span>
+              <strong>Frontend conectado com a API do Atlas CRM</strong>
+              <p>Fluxo de produtos, vendas e evolução de deploy em andamento.</p>
+            </div>
+          </div>
           <p class="project-desc">
             Este site utiliza a mesma API do Atlas CRM para gerenciar e processar a venda dos produtos.
             Estou ajustando o deploy e o projeto ainda está em desenvolvimento.
@@ -261,6 +293,14 @@
         <div class="project-num">03</div>
         <div>
           <h3 class="project-title">Sistema de gerenciamento de consulta hospitalar.</h3>
+          <div class="project-media project-preview">
+            <div class="project-preview-badge">Preview em breve</div>
+            <div class="project-preview-content">
+              <span class="project-preview-kicker">Gestao hospitalar</span>
+              <strong>Agendamento, sincronização de dados e integrações</strong>
+              <p>Projeto focado em consistência de registros e rotinas operacionais.</p>
+            </div>
+          </div>
           <p class="project-desc">
             Sistema para agendamento e gerenciamento de consultas, com integração entre sistemas,
             importação de dados, tratamento de inconsistências e sincronização de registros via API.
@@ -284,6 +324,19 @@
     </div>
   </div>
 </section>
+
+<div class="project-lightbox" data-project-lightbox aria-hidden="true">
+  <div class="project-lightbox-backdrop" data-lightbox-close></div>
+  <div class="project-lightbox-dialog" role="dialog" aria-modal="true" aria-label="Visualização ampliada do projeto">
+    <button class="project-lightbox-close" type="button" data-lightbox-close aria-label="Fechar visualização">×</button>
+    <button class="project-lightbox-nav prev" type="button" data-lightbox-prev aria-label="Imagem anterior">‹</button>
+    <figure class="project-lightbox-figure">
+      <img src="" alt="" data-lightbox-image />
+    </figure>
+    <button class="project-lightbox-nav next" type="button" data-lightbox-next aria-label="Próxima imagem">›</button>
+    <div class="project-lightbox-dots" data-lightbox-dots></div>
+  </div>
+</div>
 
 <section id="contato">
   <div class="container">
@@ -380,6 +433,147 @@
     el.style.transform = 'translateY(20px)';
     el.style.transition = 'opacity .5s ease, transform .5s ease';
     observer.observe(el);
+  });
+
+  const lightbox = document.querySelector('[data-project-lightbox]');
+  const lightboxImage = lightbox?.querySelector('[data-lightbox-image]');
+  const lightboxDots = lightbox?.querySelector('[data-lightbox-dots]');
+  const lightboxPrev = lightbox?.querySelector('[data-lightbox-prev]');
+  const lightboxNext = lightbox?.querySelector('[data-lightbox-next]');
+  const lightboxCloseTriggers = lightbox?.querySelectorAll('[data-lightbox-close]');
+
+  let activeLightboxSlides = [];
+  let activeLightboxIndex = 0;
+
+  const renderLightbox = index => {
+    if (!lightbox || !lightboxImage || !activeLightboxSlides.length) return;
+
+    const slide = activeLightboxSlides[index];
+    lightboxImage.src = slide.dataset.fullSrc || slide.querySelector('img')?.src || '';
+    lightboxImage.alt = slide.dataset.fullAlt || slide.querySelector('img')?.alt || '';
+
+    lightboxDots.innerHTML = '';
+    activeLightboxSlides.forEach((_, dotIndex) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = `project-lightbox-dot${dotIndex === index ? ' active' : ''}`;
+      dot.setAttribute('aria-label', `Ir para imagem ${dotIndex + 1}`);
+      dot.addEventListener('click', () => {
+        activeLightboxIndex = dotIndex;
+        renderLightbox(activeLightboxIndex);
+      });
+      lightboxDots.appendChild(dot);
+    });
+  };
+
+  const openLightbox = (slides, index) => {
+    if (!lightbox) return;
+    activeLightboxSlides = [...slides];
+    activeLightboxIndex = index;
+    renderLightbox(activeLightboxIndex);
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('lightbox-open');
+  };
+
+  const closeLightbox = () => {
+    if (!lightbox) return;
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('lightbox-open');
+  };
+
+  const showLightboxNext = () => {
+    if (!activeLightboxSlides.length) return;
+    activeLightboxIndex = (activeLightboxIndex + 1) % activeLightboxSlides.length;
+    renderLightbox(activeLightboxIndex);
+  };
+
+  const showLightboxPrev = () => {
+    if (!activeLightboxSlides.length) return;
+    activeLightboxIndex = (activeLightboxIndex - 1 + activeLightboxSlides.length) % activeLightboxSlides.length;
+    renderLightbox(activeLightboxIndex);
+  };
+
+  lightboxPrev?.addEventListener('click', showLightboxPrev);
+  lightboxNext?.addEventListener('click', showLightboxNext);
+  lightboxCloseTriggers?.forEach(trigger => trigger.addEventListener('click', closeLightbox));
+
+  document.querySelectorAll('[data-carousel]').forEach(carousel => {
+    const slides = carousel.querySelectorAll('[data-slide]');
+    const dots = carousel.querySelectorAll('[data-carousel-dot]');
+    const prevButton = carousel.querySelector('[data-carousel-prev]');
+    const nextButton = carousel.querySelector('[data-carousel-next]');
+
+    if (!slides.length) return;
+
+    let currentIndex = 0;
+    let intervalId;
+
+    const setActiveSlide = index => {
+      slides.forEach((slide, slideIndex) => {
+        slide.classList.toggle('active', slideIndex === index);
+      });
+
+      dots.forEach((dot, dotIndex) => {
+        dot.classList.toggle('active', dotIndex === index);
+      });
+
+      currentIndex = index;
+    };
+
+    const showNext = () => {
+      const nextIndex = (currentIndex + 1) % slides.length;
+      setActiveSlide(nextIndex);
+    };
+
+    const showPrev = () => {
+      const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+      setActiveSlide(prevIndex);
+    };
+
+    const restartAutoplay = () => {
+      clearInterval(intervalId);
+      intervalId = setInterval(showNext, 4000);
+    };
+
+    prevButton?.addEventListener('click', () => {
+      showPrev();
+      restartAutoplay();
+    });
+
+    nextButton?.addEventListener('click', () => {
+      showNext();
+      restartAutoplay();
+    });
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        setActiveSlide(index);
+        restartAutoplay();
+      });
+    });
+
+    slides.forEach((slide, index) => {
+      slide.addEventListener('click', () => {
+        openLightbox(slides, index);
+        restartAutoplay();
+      });
+    });
+
+    carousel.addEventListener('mouseenter', () => clearInterval(intervalId));
+    carousel.addEventListener('mouseleave', restartAutoplay);
+
+    setActiveSlide(0);
+    restartAutoplay();
+  });
+
+  document.addEventListener('keydown', event => {
+    if (!lightbox?.classList.contains('open')) return;
+
+    if (event.key === 'Escape') closeLightbox();
+    if (event.key === 'ArrowRight') showLightboxNext();
+    if (event.key === 'ArrowLeft') showLightboxPrev();
   });
 </script>
 </body>
