@@ -13,32 +13,49 @@
   <div class="desktop-wallpaper"></div>
 
   <header class="site-header">
-    <div class="brand-block">
-      <div class="logo">EL/DEV</div>
-      <p class="brand-caption" data-i18n="header_caption">Full Stack Engineer</p>
+    <div class="header-inner">
+      <div class="brand-block">
+        <div class="logo">EL/DEV</div>
+        <p class="brand-caption" data-i18n="header_caption">Full Stack Engineer</p>
+      </div>
+
+      <button type="button" class="mobile-menu-toggle" data-mobile-menu-toggle aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="main-nav">
+        <a href="#home" class="nav-link" data-i18n="nav_home">Home</a>
+        <a href="#sobre" class="nav-link" data-i18n="nav_about">Sobre</a>
+        <a href="#experiencia" class="nav-link" data-i18n="nav_experience">Experiência</a>
+        <a href="#skills" class="nav-link" data-i18n="nav_skills">Skills</a>
+        <a href="#projetos" class="nav-link" data-i18n="nav_projects">Projetos</a>
+        <a href="#contato" class="nav-link" data-i18n="nav_contact">Contato</a>
+      </nav>
+
+      <div class="top-controls">
+        <div class="lang-switcher" aria-label="Seletor de idioma">
+          <button type="button" class="lang-flag is-active" data-lang-option="pt-BR" aria-label="Português do Brasil">
+            <span class="flag-emoji" aria-hidden="true">🇧🇷</span>
+            <span>PT</span>
+          </button>
+          <button type="button" class="lang-flag" data-lang-option="en" aria-label="English">
+            <span class="flag-emoji" aria-hidden="true">🇺🇸</span>
+            <span>EN</span>
+          </button>
+        </div>
+        <a href="./assets/docs/Edson%20de%20Lima%20Souza.pdf" target="_blank" class="header-cta" download="Edson-de-Lima-Souza-CV.pdf" data-i18n="download_cv">Baixar currículo</a>
+      </div>
     </div>
 
-    <nav class="main-nav">
-      <a href="#home" class="nav-link" data-i18n="nav_home">Home</a>
-      <a href="#sobre" class="nav-link" data-i18n="nav_about">Sobre</a>
-      <a href="#experiencia" class="nav-link" data-i18n="nav_experience">Experiência</a>
-      <a href="#skills" class="nav-link" data-i18n="nav_skills">Skills</a>
-      <a href="#projetos" class="nav-link" data-i18n="nav_projects">Projetos</a>
-      <a href="#contato" class="nav-link" data-i18n="nav_contact">Contato</a>
-    </nav>
-
-    <div class="top-controls">
-      <div class="lang-switcher" aria-label="Seletor de idioma">
-        <button type="button" class="lang-flag is-active" data-lang-option="pt-BR" aria-label="Português do Brasil">
-          <span class="flag-emoji" aria-hidden="true">🇧🇷</span>
-          <span>PT</span>
-        </button>
-        <button type="button" class="lang-flag" data-lang-option="en" aria-label="English">
-          <span class="flag-emoji" aria-hidden="true">🇺🇸</span>
-          <span>EN</span>
-        </button>
-      </div>
-      <a href="./assets/docs/Edson%20de%20Lima%20Souza.pdf" class="header-cta" download="Edson-de-Lima-Souza-CV.pdf" data-i18n="download_cv">Baixar currículo</a>
+    <div class="mobile-menu" data-mobile-menu>
+      <a href="#home" class="mobile-menu-link" data-i18n="nav_home">Home</a>
+      <a href="#sobre" class="mobile-menu-link" data-i18n="nav_about">Sobre</a>
+      <a href="#experiencia" class="mobile-menu-link" data-i18n="nav_experience">Experiência</a>
+      <a href="#skills" class="mobile-menu-link" data-i18n="nav_skills">Skills</a>
+      <a href="#projetos" class="mobile-menu-link" data-i18n="nav_projects">Projetos</a>
+      <a href="#contato" class="mobile-menu-link" data-i18n="nav_contact">Contato</a>
     </div>
   </header>
 
@@ -59,7 +76,7 @@
             </p>
             <div class="hero-actions">
               <a href="#projetos" class="btn btn-primary" data-i18n="hero_projects">Ver projetos</a>
-              <a href="./assets/docs/Edson%20de%20Lima%20Souza.pdf" class="btn btn-ghost" download="Edson-de-Lima-Souza-CV.pdf" data-i18n="download_cv">Baixar currículo</a>
+              <a href="./assets/docs/Edson%20de%20Lima%20Souza.pdf" class="btn btn-ghost" download="Edson-de-Lima-Souza-CV.pdf" target="_blank" data-i18n="download_cv">Baixar currículo</a>
             </div>
           </div>
 
@@ -83,12 +100,6 @@
     <section id="sobre">
       <div class="container">
         <div class="about-grid">
-          <div class="about-photo-wrap">
-            <div class="about-photo-frame">
-              <img src="https://media.licdn.com/dms/image/v2/D4D03AQEJFQFY49UAAA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1719153697946?e=1778716800&v=beta&t=tvo1Mepn2WNugqA5UyvziHt1wla5Ow7S8B8GcH0orng" onerror="this.onerror=null;this.src='https://via.placeholder.com/360x420/141414/c8f04c?text=EL';" alt="Edson Lima">
-            </div>
-          </div>
-
           <div class="about-content">
             <div class="section-label" data-i18n="about_label">Quem sou</div>
             <h2 class="section-title" data-i18n="about_title">Sobre mim</h2>
@@ -372,7 +383,7 @@
             <p data-i18n="contact_cta_text">Envie uma mensagem e vamos conversar sobre seu projeto ou oportunidade.</p>
             <div class="contact-cta-actions">
               <a href="mailto:edsonlimaagil@gmail.com" class="btn btn-primary" target="_blank" data-i18n="send_message">Enviar mensagem</a>
-              <a href="./assets/docs/Edson%20de%20Lima%20Souza.pdf" class="btn btn-ghost" download="Edson-de-Lima-Souza-CV.pdf" data-i18n="download_cv">Baixar currículo</a>
+              <a href="./assets/docs/Edson%20de%20Lima%20Souza.pdf" class="btn btn-ghost" download="Edson-de-Lima-Souza-CV.pdf" target="_blank" data-i18n="download_cv">Baixar currículo</a>
             </div>
           </div>
         </div>

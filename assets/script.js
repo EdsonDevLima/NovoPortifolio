@@ -153,6 +153,8 @@ const body = document.body;
 const langButtons = document.querySelectorAll('[data-lang-option]');
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('main section[id]');
+const mobileMenuToggle = document.querySelector('[data-mobile-menu-toggle]');
+const mobileMenu = document.querySelector('[data-mobile-menu]');
 
 function applyTranslations(lang) {
   const dictionary = translations[lang] || translations['pt-BR'];
@@ -190,6 +192,8 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     if (!target) return;
     event.preventDefault();
     scrollToAnchor(href);
+    mobileMenu?.classList.remove('open');
+    mobileMenuToggle?.classList.remove('open');
   });
 });
 
@@ -374,6 +378,25 @@ document.addEventListener('keydown', (event) => {
     if (event.key === 'ArrowRight') showLightboxNext();
     if (event.key === 'ArrowLeft') showLightboxPrev();
   }
+
+  if (event.key === 'Escape') {
+    mobileMenu?.classList.remove('open');
+    mobileMenuToggle?.classList.remove('open');
+  }
+});
+
+mobileMenuToggle?.addEventListener('click', () => {
+  mobileMenu?.classList.toggle('open');
+  mobileMenuToggle.classList.toggle('open');
+});
+
+document.addEventListener('click', (event) => {
+  if (!mobileMenu || !mobileMenuToggle) return;
+  const target = event.target;
+  if (!(target instanceof Node)) return;
+  if (mobileMenu.contains(target) || mobileMenuToggle.contains(target)) return;
+  mobileMenu.classList.remove('open');
+  mobileMenuToggle.classList.remove('open');
 });
 
 applyTranslations('pt-BR');
