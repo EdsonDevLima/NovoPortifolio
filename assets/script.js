@@ -1,179 +1,379 @@
-// Smooth scroll for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  });
-});
+const translations = {
+  'pt-BR': {
+    header_caption: 'Full Stack Engineer',
+    nav_home: 'Home',
+    nav_about: 'Sobre',
+    nav_experience: 'Experiência',
+    nav_skills: 'Skills',
+    nav_projects: 'Projetos',
+    nav_contact: 'Contato',
+    lang_label: 'Idioma',
+    download_cv: 'Baixar currículo',
+    hero_badge: 'Disponível para oportunidades',
+    hero_subtitle: 'Desenvolvedor Full Stack que transforma regra de negócio em produto elegante, performático e pronto para escalar com TypeScript, React, Node.js e .NET Core.',
+    hero_projects: 'Ver projetos',
+    hero_summary: 'Resumo rápido',
+    hero_focus_label: 'Foco',
+    hero_focus_value: 'Produtos web completos',
+    hero_stack_label: 'Stack principal',
+    hero_stack_value: 'React, Node.js, .NET',
+    hero_current_label: 'Atuação atual',
+    hero_current_value: 'Agil.net',
+    hero_stat_1: 'anos em tecnologia',
+    hero_stat_2: 'frontend, backend e integrações',
+    hero_stat_3: 'foco em estrutura e qualidade',
+    about_label: 'Quem sou',
+    about_title: 'Sobre mim',
+    about_p1: 'Sou Desenvolvedor Full Stack com experiência no desenvolvimento de aplicações web modernas, integrações de sistemas e automações. Trabalho principalmente com TypeScript, Node.js e React no frontend, e .NET Core, NestJS e Next.js no backend e além. Sou formado em Análise e Desenvolvimento de Sistemas.',
+    about_p2: 'Iniciei minha carreira em suporte técnico, o que me proporcionou uma base sólida em infraestrutura e resolução de problemas, habilidades que aplico diariamente no desenvolvimento de soluções mais completas.',
+    about_p3: 'Atualmente na Agil.net, atuo com DDD, clean code e boas práticas de segurança, desenvolvendo com Vue.js e Fastify, além de participar de atividades de infraestrutura como deploys via Cloudflare e planejamento técnico de tarefas.',
+    tag_security: 'Segurança',
+    tag_integrations: 'Integrações',
+    tag_automation: 'Automações',
+    experience_label: 'Trajetória',
+    experience_title: 'Experiência',
+    job1_period: '2024 — Atual',
+    job1_title: 'Desenvolvedor Full Stack',
+    job1_company: 'Agil.net — Remoto',
+    job1_item1: 'Desenvolvimento backend com Node.js e Fastify',
+    job1_item2: 'Desenvolvimento frontend com Vue.js',
+    job1_item3: 'Aplicação de DDD, clean code e boas práticas de segurança',
+    job1_item4: 'Integrações entre sistemas e automações',
+    job1_item5: 'Ajustes e manipulação de MySQL e SQL Server',
+    job1_item6: 'Deploys para testes e gerenciamento de domínios via Cloudflare',
+    job1_item7: 'Planejamento técnico de tasks e criação de diagramas',
+    job1_item8: 'Apoio ao time de suporte em demandas técnicas e correções',
+    job2_title: 'Suporte Técnico',
+    job2_company: 'CTM – Consultoria Softwares Públicos — Presencial',
+    job2_item1: 'Atendimento e suporte técnico a usuários',
+    job2_item2: 'Diagnóstico e resolução de problemas em sistemas',
+    job2_item3: 'Apoio em infraestrutura e manutenção de aplicações',
+    skills_label: 'Tecnologias',
+    skills_title: 'Stack',
+    skills_desc: 'Ferramentas que uso para construir soluções completas do backend ao frontend.',
+    skills_backend: 'Backend',
+    skills_frontend: 'Frontend',
+    skills_database: 'Banco de Dados',
+    skills_devops: 'Infra / DevOps',
+    projects_title: 'Projetos',
+    projects_desc: 'Alguns projetos desenvolvidos ao longo da minha trajetória.',
+    project1_desc: 'Sistema completo de gerenciamento de vendas com autenticação JWT, dashboard interativo e integrações com APIs externas. Pipeline de vendas visual com gráficos simples em tempo real.',
+    project2_desc: 'O Atlas vendas é o site onde o cliente final realiza a compra de produtos diretamente do fornecedor, utilizando a mesma API do Atlas CRM para gerenciar catálogo, pedidos e processamento das vendas. O projeto ainda está em processo de desenvolvimento e estou ajustando os detalhes do deploy.',
+    project3_title: 'Sistema de gerenciamento de consulta hospitalar.',
+    project3_desc: 'Sistema para agendamento e gerenciamento de consultas, com integração entre sistemas, importação de dados, tratamento de inconsistências e sincronização de registros via API. Projeto em desenvolvimento.',
+    external_api: 'Integração com API externa',
+    in_progress: 'Em desenvolvimento',
+    view_repo: 'Ver repositório',
+    contact_label: 'Vamos conversar',
+    contact_title: 'Contato',
+    contact_text: 'Estou aberto a novos desafios e oportunidades. Se você tem um projeto em mente ou quer bater um papo sobre tecnologia, fico feliz em conversar.',
+    contact_phone_label: 'Telefone / WhatsApp',
+    contact_cta_title: 'Pronto para começar?',
+    contact_cta_text: 'Envie uma mensagem e vamos conversar sobre seu projeto ou oportunidade.',
+    send_message: 'Enviar mensagem',
+    footer_text: 'Todos os direitos reservados.'
+  },
+  en: {
+    header_caption: 'Full Stack Engineer',
+    nav_home: 'Home',
+    nav_about: 'About',
+    nav_experience: 'Experience',
+    nav_skills: 'Skills',
+    nav_projects: 'Projects',
+    nav_contact: 'Contact',
+    lang_label: 'Language',
+    download_cv: 'Download resume',
+    hero_badge: 'Available for opportunities',
+    hero_subtitle: 'Full Stack developer turning business rules into elegant, high-performing products ready to scale with TypeScript, React, Node.js and .NET Core.',
+    hero_projects: 'View projects',
+    hero_summary: 'Quick summary',
+    hero_focus_label: 'Focus',
+    hero_focus_value: 'Complete web products',
+    hero_stack_label: 'Main stack',
+    hero_stack_value: 'React, Node.js, .NET',
+    hero_current_label: 'Current role',
+    hero_current_value: 'Agil.net',
+    hero_stat_1: 'years in technology',
+    hero_stat_2: 'frontend, backend and integrations',
+    hero_stat_3: 'focus on structure and quality',
+    about_label: 'Who I am',
+    about_title: 'About me',
+    about_p1: 'I am a Full Stack Developer with experience building modern web applications, system integrations and automations. I mainly work with TypeScript, Node.js and React on the frontend, and .NET Core, NestJS and Next.js across backend and product delivery. I hold a degree in Systems Analysis and Development.',
+    about_p2: 'I started my career in technical support, which gave me a strong foundation in infrastructure and problem solving, skills I still apply daily when building more complete solutions.',
+    about_p3: 'At Agil.net, I work with DDD, clean code and security best practices, building with Vue.js and Fastify while also handling infrastructure activities such as Cloudflare deployments and technical planning.',
+    tag_security: 'Security',
+    tag_integrations: 'Integrations',
+    tag_automation: 'Automation',
+    experience_label: 'Journey',
+    experience_title: 'Experience',
+    job1_period: '2024 — Present',
+    job1_title: 'Full Stack Developer',
+    job1_company: 'Agil.net — Remote',
+    job1_item1: 'Backend development with Node.js and Fastify',
+    job1_item2: 'Frontend development with Vue.js',
+    job1_item3: 'Applying DDD, clean code and security best practices',
+    job1_item4: 'System integrations and automations',
+    job1_item5: 'Adjustments and handling of MySQL and SQL Server',
+    job1_item6: 'Test deployments and Cloudflare domain management',
+    job1_item7: 'Technical task planning and diagram creation',
+    job1_item8: 'Support team assistance on technical demands and fixes',
+    job2_title: 'Technical Support',
+    job2_company: 'CTM – Public Software Consulting — On-site',
+    job2_item1: 'User support and technical assistance',
+    job2_item2: 'Troubleshooting and issue diagnosis in systems',
+    job2_item3: 'Infrastructure support and application maintenance',
+    skills_label: 'Technologies',
+    skills_title: 'Stack',
+    skills_desc: 'Tools I use to build complete solutions from backend to frontend.',
+    skills_backend: 'Backend',
+    skills_frontend: 'Frontend',
+    skills_database: 'Database',
+    skills_devops: 'Infra / DevOps',
+    projects_title: 'Projects',
+    projects_desc: 'A few projects built throughout my journey.',
+    project1_desc: 'Complete sales management system with JWT authentication, interactive dashboard and external API integrations. Visual sales pipeline with real-time charts.',
+    project2_desc: 'Atlas Vendas is the website where the end customer buys products directly from the supplier, using the same Atlas CRM API to manage catalog, orders and sales processing. The project is still under development and I am refining deployment details.',
+    project3_title: 'Hospital appointment management system.',
+    project3_desc: 'System for scheduling and managing appointments, with system integrations, data imports, inconsistency handling and record synchronization through API. Project currently in development.',
+    external_api: 'External API integration',
+    in_progress: 'In development',
+    view_repo: 'View repository',
+    contact_label: 'Let’s talk',
+    contact_title: 'Contact',
+    contact_text: 'I am open to new challenges and opportunities. If you have a project in mind or want to chat about technology, I would be happy to talk.',
+    contact_phone_label: 'Phone / WhatsApp',
+    contact_cta_title: 'Ready to start?',
+    contact_cta_text: 'Send a message and let’s talk about your project or opportunity.',
+    send_message: 'Send message',
+    footer_text: 'All rights reserved.'
+  }
+};
 
-// Active navigation link on scroll
-const sections = document.querySelectorAll('section[id]');
+const body = document.body;
+const langButtons = document.querySelectorAll('[data-lang-option]');
 const navLinks = document.querySelectorAll('.nav-link');
+const sections = document.querySelectorAll('main section[id]');
 
-function setActiveLink() {
-  let current = '';
-  
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.clientHeight;
-    
-    if (scrollY >= (sectionTop - 200)) {
-      current = section.getAttribute('id');
+function applyTranslations(lang) {
+  const dictionary = translations[lang] || translations['pt-BR'];
+  document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
+  body.dataset.lang = lang;
+
+  document.querySelectorAll('[data-i18n]').forEach((element) => {
+    const key = element.dataset.i18n;
+    if (dictionary[key]) {
+      element.textContent = dictionary[key];
     }
   });
 
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === `#${current}`) {
-      link.classList.add('active');
-    }
+  langButtons.forEach((button) => {
+    button.classList.toggle('is-active', button.dataset.langOption === lang);
   });
 }
 
-window.addEventListener('scroll', setActiveLink);
+function scrollToAnchor(targetSelector) {
+  const target = document.querySelector(targetSelector);
+  if (!target) return;
 
-// Intersection Observer for scroll animations
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -100px 0px'
-};
+  const offset = 100;
+  window.scrollTo({
+    top: target.offsetTop - offset,
+    behavior: 'smooth'
+  });
+}
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener('click', (event) => {
+    const href = anchor.getAttribute('href');
+    if (!href) return;
+    const target = document.querySelector(href);
+    if (!target) return;
+    event.preventDefault();
+    scrollToAnchor(href);
+  });
+});
+
+function updateActiveNav() {
+  let currentId = '';
+
+  sections.forEach((section) => {
+    const top = section.offsetTop - 140;
+    const bottom = top + section.offsetHeight;
+    if (window.scrollY >= top && window.scrollY < bottom) {
+      currentId = section.id;
+    }
+  });
+
+  navLinks.forEach((link) => {
+    link.classList.toggle('active', link.getAttribute('href') === `#${currentId}`);
+  });
+}
+
+window.addEventListener('scroll', updateActiveNav);
+updateActiveNav();
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
       entry.target.style.opacity = '1';
       entry.target.style.transform = 'translateY(0)';
     }
   });
-}, observerOptions);
+}, { threshold: 0.12 });
 
-// Observe elements for animation
-document.querySelectorAll('.skill-card, .project-card, .about-grid, .contact-content').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(30px)';
-  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-  observer.observe(el);
+document.querySelectorAll('.timeline-item, .skill-card, .project-card, .contact-item, .about-content, .hero-panel-card').forEach((element) => {
+  element.style.opacity = '0';
+  element.style.transform = 'translateY(24px)';
+  element.style.transition = 'opacity .6s ease, transform .6s ease';
+  revealObserver.observe(element);
 });
 
-// Header background on scroll
-const header = document.querySelector('.header');
-let lastScroll = 0;
-
-window.addEventListener('scroll', () => {
-  const currentScroll = window.pageYOffset;
-  
-  if (currentScroll > 100) {
-    header.style.background = 'rgba(10, 10, 15, 0.95)';
-    header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
-  } else {
-    header.style.background = 'rgba(10, 10, 15, 0.8)';
-    header.style.boxShadow = 'none';
-  }
-  
-  lastScroll = currentScroll;
+langButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const selectedLang = button.dataset.langOption;
+    if (!selectedLang) return;
+    applyTranslations(selectedLang);
+  });
 });
 
-// Cursor follower effect (optional enhancement)
-const cursor = document.createElement('div');
-cursor.className = 'cursor-follower';
-document.body.appendChild(cursor);
+const lightbox = document.querySelector('[data-project-lightbox]');
+const lightboxImage = lightbox?.querySelector('[data-lightbox-image]');
+const lightboxDots = lightbox?.querySelector('[data-lightbox-dots]');
+const lightboxPrev = lightbox?.querySelector('[data-lightbox-prev]');
+const lightboxNext = lightbox?.querySelector('[data-lightbox-next]');
+const lightboxCloseTriggers = lightbox?.querySelectorAll('[data-lightbox-close]');
 
-const cursorStyle = document.createElement('style');
-cursorStyle.textContent = `
-  .cursor-follower {
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--primary);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 10000;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-    opacity: 0;
-  }
-  
-  @media (hover: hover) and (pointer: fine) {
-    .cursor-follower {
-      opacity: 0.5;
-    }
-  }
-`;
-document.head.appendChild(cursorStyle);
+let activeLightboxSlides = [];
+let activeLightboxIndex = 0;
 
-let mouseX = 0;
-let mouseY = 0;
-let cursorX = 0;
-let cursorY = 0;
+function renderLightbox(index) {
+  if (!lightbox || !lightboxImage || !activeLightboxSlides.length || !lightboxDots) return;
 
-document.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-});
+  const slide = activeLightboxSlides[index];
+  lightboxImage.src = slide.dataset.fullSrc || slide.querySelector('img')?.src || '';
+  lightboxImage.alt = slide.dataset.fullAlt || slide.querySelector('img')?.alt || '';
 
-function animateCursor() {
-  const delay = 0.1;
-  
-  cursorX += (mouseX - cursorX) * delay;
-  cursorY += (mouseY - cursorY) * delay;
-  
-  cursor.style.left = cursorX + 'px';
-  cursor.style.top = cursorY + 'px';
-  
-  requestAnimationFrame(animateCursor);
+  lightboxDots.innerHTML = '';
+
+  activeLightboxSlides.forEach((_, dotIndex) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = `project-lightbox-dot${dotIndex === index ? ' active' : ''}`;
+    dot.setAttribute('aria-label', `Image ${dotIndex + 1}`);
+    dot.addEventListener('click', () => {
+      activeLightboxIndex = dotIndex;
+      renderLightbox(activeLightboxIndex);
+    });
+    lightboxDots.appendChild(dot);
+  });
 }
 
-animateCursor();
-
-// Hover effects for interactive elements
-document.querySelectorAll('a, button, .skill-tag, .project-card').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cursor.style.transform = 'scale(1.5)';
-    cursor.style.borderColor = 'var(--secondary)';
-  });
-  
-  el.addEventListener('mouseleave', () => {
-    cursor.style.transform = 'scale(1)';
-    cursor.style.borderColor = 'var(--primary)';
-  });
-});
-
-// Parallax effect for gradient orbs
-window.addEventListener('scroll', () => {
-  const scrolled = window.pageYOffset;
-  const orbs = document.querySelectorAll('.gradient-orb');
-  
-  orbs.forEach((orb, index) => {
-    const speed = (index + 1) * 0.3;
-    orb.style.transform = `translateY(${scrolled * speed}px)`;
-  });
-});
-
-// Add typing effect to hero title (optional)
-const heroName = document.querySelector('.hero-name');
-if (heroName) {
-  const text = heroName.textContent;
-  heroName.textContent = '';
-  heroName.style.opacity = '1';
-  
-  let i = 0;
-  const typeSpeed = 100;
-  
-  setTimeout(() => {
-    function typeWriter() {
-      if (i < text.length) {
-        heroName.textContent += text.charAt(i);
-        i++;
-        setTimeout(typeWriter, typeSpeed);
-      }
-    }
-    typeWriter();
-  }, 1000);
+function openLightbox(slides, index) {
+  if (!lightbox) return;
+  activeLightboxSlides = [...slides];
+  activeLightboxIndex = index;
+  renderLightbox(activeLightboxIndex);
+  lightbox.classList.add('open');
+  lightbox.setAttribute('aria-hidden', 'false');
+  body.classList.add('lightbox-open');
 }
-console.log('%c👋 Olá! Obrigado por visitar meu portfólio!', 'color: #00d4ff; font-size: 16px; font-weight: bold;');
-console.log('%c🚀 Interessado em trabalhar juntos? Entre em contato!', 'color: #ff006e; font-size: 14px;');
+
+function closeLightbox() {
+  if (!lightbox) return;
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden', 'true');
+  body.classList.remove('lightbox-open');
+}
+
+function showLightboxNext() {
+  if (!activeLightboxSlides.length) return;
+  activeLightboxIndex = (activeLightboxIndex + 1) % activeLightboxSlides.length;
+  renderLightbox(activeLightboxIndex);
+}
+
+function showLightboxPrev() {
+  if (!activeLightboxSlides.length) return;
+  activeLightboxIndex = (activeLightboxIndex - 1 + activeLightboxSlides.length) % activeLightboxSlides.length;
+  renderLightbox(activeLightboxIndex);
+}
+
+lightboxPrev?.addEventListener('click', showLightboxPrev);
+lightboxNext?.addEventListener('click', showLightboxNext);
+lightboxCloseTriggers?.forEach((trigger) => trigger.addEventListener('click', closeLightbox));
+
+document.querySelectorAll('[data-carousel]').forEach((carousel) => {
+  const slides = carousel.querySelectorAll('[data-slide]');
+  const dots = carousel.querySelectorAll('[data-carousel-dot]');
+  const prevButton = carousel.querySelector('[data-carousel-prev]');
+  const nextButton = carousel.querySelector('[data-carousel-next]');
+
+  if (!slides.length) return;
+
+  let currentIndex = 0;
+  let intervalId;
+
+  function setActiveSlide(index) {
+    slides.forEach((slide, slideIndex) => {
+      slide.classList.toggle('active', slideIndex === index);
+    });
+
+    dots.forEach((dot, dotIndex) => {
+      dot.classList.toggle('active', dotIndex === index);
+    });
+
+    currentIndex = index;
+  }
+
+  function showNext() {
+    setActiveSlide((currentIndex + 1) % slides.length);
+  }
+
+  function showPrev() {
+    setActiveSlide((currentIndex - 1 + slides.length) % slides.length);
+  }
+
+  function restartAutoplay() {
+    clearInterval(intervalId);
+    intervalId = window.setInterval(showNext, 4200);
+  }
+
+  prevButton?.addEventListener('click', () => {
+    showPrev();
+    restartAutoplay();
+  });
+
+  nextButton?.addEventListener('click', () => {
+    showNext();
+    restartAutoplay();
+  });
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      setActiveSlide(index);
+      restartAutoplay();
+    });
+  });
+
+  slides.forEach((slide, index) => {
+    slide.addEventListener('click', () => {
+      openLightbox(slides, index);
+      restartAutoplay();
+    });
+  });
+
+  carousel.addEventListener('mouseenter', () => clearInterval(intervalId));
+  carousel.addEventListener('mouseleave', restartAutoplay);
+
+  setActiveSlide(0);
+  restartAutoplay();
+});
+
+document.addEventListener('keydown', (event) => {
+  if (lightbox?.classList.contains('open')) {
+    if (event.key === 'Escape') closeLightbox();
+    if (event.key === 'ArrowRight') showLightboxNext();
+    if (event.key === 'ArrowLeft') showLightboxPrev();
+  }
+});
+
+applyTranslations('pt-BR');
