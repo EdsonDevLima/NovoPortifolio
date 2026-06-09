@@ -62,7 +62,7 @@ const translations = {
     certifications_summary_title: 'Certificados em destaque',
     certifications_summary_text: 'Passe pelos cards para ver cada certificação em detalhe. O carrossel também funciona no mobile.',
     certification_item_1: 'Análise e Desenvolvimento de Sistemas',
-    certification_item_2: 'Curso .NET',
+    certification_item_2: 'Curso de Desenvolvimento Backend com .NET',
     certification_item_3: 'freeCodeCamp',
     projects_title: 'Projetos',
     projects_desc: 'Alguns projetos desenvolvidos ao longo da minha trajetória.',
@@ -188,6 +188,7 @@ function applyTranslations(lang) {
 
   if (langSelect) {
     langSelect.value = lang;
+    langSelect.dataset.lang = lang;
   }
 }
 

@@ -151,7 +151,6 @@ footer,
   flex-direction: column;
   gap: 5px;
   border: 1px solid var(--border);
-  border-radius: 12px;
   background: rgba(10, 15, 21, 0.9);
   cursor: pointer;
 }
@@ -181,7 +180,7 @@ footer,
   margin: 12px auto 0;
   padding: 12px;
   border: 1px solid rgba(128, 168, 205, 0.18);
-  border-radius: 16px;
+  border-radius: 5px;
   background: rgba(8, 12, 17, 0.96);
   box-shadow: 0 12px 40px rgba(1, 5, 16, 0.24);
 }
@@ -250,7 +249,7 @@ footer,
   display: inline-flex;
   align-items: center;
   padding: 4px;
-  border-radius: 12px;
+  
   border: 1px solid var(--border);
   background: rgba(10, 15, 21, 0.9);
 }
@@ -317,7 +316,7 @@ footer,
   align-items: center;
   justify-content: center;
   gap: 8px;
-  border-radius: 12px;
+  
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
@@ -417,7 +416,7 @@ section {
 .hero-badge {
   padding: 10px 16px;
   margin-bottom: 28px;
-  border-radius: 12px;
+  
   background: rgba(12, 19, 27, 0.84);
   border: 1px solid rgba(119, 191, 232, 0.2);
   color: var(--accent-strong);
@@ -490,7 +489,7 @@ section {
 
 .hero-panel-card {
   padding: 28px;
-  border-radius: var(--radius-lg);
+  border-radius: 5px;
 }
 
 .hero-panel-item + .hero-panel-item {
@@ -584,7 +583,7 @@ section {
 .about-content,
 .contact-cta-box {
   padding: 36px;
-  border-radius: var(--radius-lg);
+  border-radius: 5px;
 }
 
 .about-text p + p {
@@ -606,7 +605,7 @@ section {
 .tag-pill,
 .skill-tag,
 .tech-tag {
-  border-radius: 12px;
+  
   font-family: var(--font-display);
 }
 
@@ -639,7 +638,7 @@ section {
   position: relative;
   margin-left: 46px;
   padding: 28px 30px;
-  border-radius: 16px;
+  border-radius: 5px;
 }
 
 .timeline-item::before {
@@ -701,7 +700,7 @@ section {
 
 .skill-card {
   padding: 32px;
-  border-radius: 16px;
+  border-radius: 5px;
 }
 
 .skill-card-header {
@@ -732,7 +731,7 @@ section {
 .certifications-summary-card {
   height: 100%;
   padding: 32px;
-  border-radius: 16px;
+  border-radius: 5px;
   background: linear-gradient(180deg, rgba(12, 18, 26, 0.94), rgba(8, 12, 17, 0.96));
   border: 1px solid rgba(128, 168, 205, 0.14);
   box-shadow: var(--shadow);
@@ -759,7 +758,7 @@ section {
 .certificate-carousel {
   height: clamp(380px, 42vw, 520px);
   min-height: clamp(380px, 42vw, 520px);
-  border-radius: 16px;
+  border-radius: 5px;
   overflow: hidden;
   box-shadow: var(--shadow);
 }
@@ -775,7 +774,7 @@ section {
   gap: 26px;
   align-items: start;
   padding: 30px;
-  border-radius: 16px;
+  border-radius: 5px;
 }
 
 .project-num {
@@ -792,7 +791,7 @@ section {
 
 .project-media {
   margin-bottom: 22px;
-  border-radius: 12px;
+  
   border: 1px solid rgba(128, 168, 205, 0.16);
   overflow: hidden;
   background: linear-gradient(180deg, rgba(12, 18, 26, 0.96), rgba(8, 12, 17, 0.96));
@@ -1015,7 +1014,7 @@ section {
   z-index: 1;
   width: min(1100px, calc(100vw - 32px));
   padding: 26px;
-  border-radius: 16px;
+  border-radius: 5px;
   background: #0f1620;
   box-shadow: 0 30px 90px rgba(0, 0, 0, 0.36);
 }
@@ -1101,7 +1100,7 @@ footer {
   right: 18px;
   bottom: 18px;
   padding: 12px 14px;
-  border-radius: 12px;
+  
   background: linear-gradient(180deg, rgba(8, 14, 20, 0.12), rgba(8, 14, 20, 0.82));
   border: 1px solid rgba(128, 168, 205, 0.18);
   color: var(--text);
@@ -1233,7 +1232,7 @@ footer {
 
   .lang-switcher {
     width: 100%;
-    max-width: 150px;
+    max-width: 58px;
     margin: 0 auto;
     padding: 4px;
     justify-content: center;
@@ -1242,8 +1241,32 @@ footer {
   .lang-select {
     width: 100%;
     min-width: 0;
-    font-size: 10px;
-    padding: 8px 30px 8px 10px;
+    font-size: 0;
+    padding: 10px 0;
+    text-indent: -9999px;
+    color: transparent;
+    background-position:
+      center center,
+      center center,
+      0 0;
+    background-size:
+      10px 10px,
+      10px 10px,
+      100% 100%;
+  }
+
+  .lang-select[data-lang='pt-BR'] {
+    background-image:
+      radial-gradient(circle, #1f8a3b 0 35%, transparent 36%),
+      radial-gradient(circle, #f5d34b 0 35%, transparent 36%),
+      linear-gradient(135deg, rgba(13, 20, 28, 0.98), rgba(9, 14, 20, 0.98));
+  }
+
+  .lang-select[data-lang='en'] {
+    background-image:
+      radial-gradient(circle, #3b82f6 0 35%, transparent 36%),
+      radial-gradient(circle, #ef4444 0 35%, transparent 36%),
+      linear-gradient(135deg, rgba(13, 20, 28, 0.98), rgba(9, 14, 20, 0.98));
   }
 
   .header-cta {
