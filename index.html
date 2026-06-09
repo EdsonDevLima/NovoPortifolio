@@ -6,7 +6,7 @@
   <title>Edson Lima | Desenvolvedor Full Stack</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body data-lang="pt-BR">
@@ -30,20 +30,17 @@
         <a href="#sobre" class="nav-link" data-i18n="nav_about">Sobre</a>
         <a href="#experiencia" class="nav-link" data-i18n="nav_experience">Experiência</a>
         <a href="#skills" class="nav-link" data-i18n="nav_skills">Skills</a>
+        <a href="#certificacoes" class="nav-link" data-i18n="nav_certifications">Certificações</a>
         <a href="#projetos" class="nav-link" data-i18n="nav_projects">Projetos</a>
         <a href="#contato" class="nav-link" data-i18n="nav_contact">Contato</a>
       </nav>
 
       <div class="top-controls">
         <div class="lang-switcher" aria-label="Seletor de idioma">
-          <button type="button" class="lang-flag is-active" data-lang-option="pt-BR" aria-label="Português do Brasil">
-            <span class="flag-emoji" aria-hidden="true">🇧🇷</span>
-            <span>PT</span>
-          </button>
-          <button type="button" class="lang-flag" data-lang-option="en" aria-label="English">
-            <span class="flag-emoji" aria-hidden="true">🇺🇸</span>
-            <span>EN</span>
-          </button>
+          <select class="lang-select" data-lang-select aria-label="Selecionar idioma">
+            <option value="pt-BR">🇧🇷 Português</option>
+            <option value="en">🇺🇸 English</option>
+          </select>
         </div>
         <a href="./assets/docs/Edson%20de%20Lima%20Souza.pdf" target="_blank" class="header-cta" download="Edson-de-Lima-Souza-CV.pdf" data-i18n="download_cv">Baixar currículo</a>
       </div>
@@ -54,6 +51,7 @@
       <a href="#sobre" class="mobile-menu-link" data-i18n="nav_about">Sobre</a>
       <a href="#experiencia" class="mobile-menu-link" data-i18n="nav_experience">Experiência</a>
       <a href="#skills" class="mobile-menu-link" data-i18n="nav_skills">Skills</a>
+      <a href="#certificacoes" class="mobile-menu-link" data-i18n="nav_certifications">Certificações</a>
       <a href="#projetos" class="mobile-menu-link" data-i18n="nav_projects">Projetos</a>
       <a href="#contato" class="mobile-menu-link" data-i18n="nav_contact">Contato</a>
     </div>
@@ -66,32 +64,17 @@
       <div class="container hero-content">
         <div class="hero-layout">
           <div class="hero-copy">
-            <div class="hero-badge" data-i18n="hero_badge">Disponível para oportunidades</div>
             <h1 class="hero-name">
               <span class="line1">EDSON</span><br>
               <span class="line2">LIMA</span>
             </h1>
             <p class="hero-subtitle" data-i18n="hero_subtitle">
-              Desenvolvedor Full Stack que transforma regra de negócio em produto elegante, performático e pronto para escalar com TypeScript, React, Node.js e .NET Core.
+              Desenvolvedor Full Stack, transformando desafios de negócio em produtos elegantes, performáticos e prontos para evoluir com TypeScript, React, Node.js e .NET Core.
             </p>
             <div class="hero-actions">
               <a href="#projetos" class="btn btn-primary" data-i18n="hero_projects">Ver projetos</a>
               <a href="./assets/docs/Edson%20de%20Lima%20Souza.pdf" class="btn btn-ghost" download="Edson-de-Lima-Souza-CV.pdf" target="_blank" data-i18n="download_cv">Baixar currículo</a>
             </div>
-          </div>
-
-          <aside class="hero-panel" aria-label="Resumo profissional">
-          </aside>
-        </div>
-
-        <div class="hero-stats">
-          <div>
-            <div class="stat-value">3+</div>
-            <div class="stat-label" data-i18n="hero_stat_1">anos em tecnologia</div>
-          </div>
-          <div>
-            <div class="stat-value">Full Stack</div>
-            <div class="stat-label" data-i18n="hero_stat_2">frontend, backend e integrações</div>
           </div>
         </div>
       </div>
@@ -223,6 +206,54 @@
       </div>
     </section>
 
+    <section id="certificacoes">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label" data-i18n="certifications_label">Certificações</div>
+          <h2 class="section-title" data-i18n="certifications_title">Minha coleção</h2>
+          <p class="section-desc" data-i18n="certifications_desc">Uma seleção dos certificados que fortalecem minha jornada técnica e profissional.</p>
+        </div>
+
+        <div class="certifications-layout">
+          <div class="certifications-summary">
+            <div class="certifications-summary-card">
+              <h3 data-i18n="certifications_summary_title">Certificados em destaque</h3>
+              <p data-i18n="certifications_summary_text">Passe pelos cards para ver cada certificação em detalhe. O carrossel também funciona no mobile.</p>
+              <div class="certifications-pills">
+                <span class="tag-pill" data-i18n="certification_item_1">Análise e Desenvolvimento de Sistemas</span>
+                <span class="tag-pill" data-i18n="certification_item_2">Curso .NET</span>
+                <span class="tag-pill" data-i18n="certification_item_3">freeCodeCamp</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="certificate-carousel project-carousel" data-carousel aria-label="Carrossel de certificações">
+            <div class="project-carousel-track">
+              <button class="project-slide certificate-slide active" type="button" data-slide data-full-src="./assets/imgs/courses/faculdade.ads.png" data-full-alt="Certificado de Análise e Desenvolvimento de Sistemas">
+                <img src="./assets/imgs/courses/faculdade.ads.png" alt="Certificado de Análise e Desenvolvimento de Sistemas">
+                <span class="certificate-caption" data-i18n="certification_item_1">Análise e Desenvolvimento de Sistemas</span>
+              </button>
+              <button class="project-slide certificate-slide" type="button" data-slide data-full-src="./assets/imgs/courses/curso.net.jpeg" data-full-alt="Certificado do curso .NET">
+                <img src="./assets/imgs/courses/curso.net.jpeg" alt="Certificado do curso .NET">
+                <span class="certificate-caption" data-i18n="certification_item_2">Curso .NET</span>
+              </button>
+              <button class="project-slide certificate-slide" type="button" data-slide data-full-src="./assets/imgs/courses/freeCodeCamp.certificação.jpeg" data-full-alt="Certificado freeCodeCamp">
+                <img src="./assets/imgs/courses/freeCodeCamp.certificação.jpeg" alt="Certificado freeCodeCamp">
+                <span class="certificate-caption" data-i18n="certification_item_3">freeCodeCamp</span>
+              </button>
+            </div>
+            <button class="project-carousel-btn prev" type="button" data-carousel-prev aria-label="Imagem anterior">‹</button>
+            <button class="project-carousel-btn next" type="button" data-carousel-next aria-label="Próxima imagem">›</button>
+            <div class="project-carousel-dots" aria-label="Selecionar certificação">
+              <button class="project-carousel-dot active" type="button" data-carousel-dot="0" aria-label="Ir para certificação 1"></button>
+              <button class="project-carousel-dot" type="button" data-carousel-dot="1" aria-label="Ir para certificação 2"></button>
+              <button class="project-carousel-dot" type="button" data-carousel-dot="2" aria-label="Ir para certificação 3"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="projetos">
       <div class="container">
         <div class="section-header">
@@ -303,8 +334,7 @@
                 <span class="tech-tag" data-i18n="external_api">Integração com API externa</span>
               </div>
             </div>
-            <div>
-              <span class="project-link project-status" data-i18n="in_progress">Em desenvolvimento</span>
+            <div> 
               <a href="https://github.com/EdsonDevLima/AtlasSite" class="project-link" target="_blank" data-i18n="view_repo">Ver repositório</a>
             </div>
           </div>
@@ -338,7 +368,6 @@
               </div>
             </div>
             <div>
-              <span class="project-link project-status" data-i18n="in_progress">Em desenvolvimento</span>
               <a href="https://github.com/EdsonDevLima/SystemSaude" class="project-link" target="_blank" data-i18n="view_repo">Ver repositório</a>
             </div>
           </div>

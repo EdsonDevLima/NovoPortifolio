@@ -5,23 +5,24 @@ const translations = {
     nav_about: 'Sobre',
     nav_experience: 'Experiência',
     nav_skills: 'Skills',
+    nav_certifications: 'Certificações',
     nav_projects: 'Projetos',
     nav_contact: 'Contato',
     lang_label: 'Idioma',
     download_cv: 'Baixar currículo',
-    hero_badge: 'Disponível para oportunidades',
-    hero_subtitle: 'Desenvolvedor Full Stack que transforma regra de negócio em produto elegante, performático e pronto para escalar com TypeScript, React, Node.js e .NET Core.',
+    hero_badge: 'Disponível para novas oportunidades',
+    hero_subtitle: 'Desenvolvedor Full Stack, transformando desafios de negócio em produtos elegantes, performáticos e prontos para evoluir com TypeScript, React, Node.js e .NET Core.',
     hero_projects: 'Ver projetos',
     hero_summary: 'Resumo rápido',
     hero_focus_label: 'Foco',
     hero_focus_value: 'Produtos web completos',
-    hero_stack_label: 'Stack principal',
-    hero_stack_value: 'React, Node.js, .NET',
-    hero_current_label: 'Atuação atual',
+    hero_stack_label: 'Stack',
+    hero_stack_value: 'React, Node.js e .NET',
+    hero_current_label: 'Atuação',
     hero_current_value: 'Agil.net',
     hero_stat_1: 'anos em tecnologia',
     hero_stat_2: 'frontend, backend e integrações',
-    hero_stat_3: 'foco em estrutura e qualidade',
+    hero_stat_3: 'visual temático com foco em imersão',
     about_label: 'Quem sou',
     about_title: 'Sobre mim',
     about_p1: 'Sou Desenvolvedor Full Stack com experiência no desenvolvimento de aplicações web modernas, integrações de sistemas e automações. Trabalho principalmente com TypeScript, Node.js e React no frontend, e .NET Core, NestJS e Next.js no backend e além. Sou formado em Análise e Desenvolvimento de Sistemas.',
@@ -55,6 +56,14 @@ const translations = {
     skills_frontend: 'Frontend',
     skills_database: 'Banco de Dados',
     skills_devops: 'Infra / DevOps',
+    certifications_label: 'Certificações',
+    certifications_title: 'Minha coleção',
+    certifications_desc: 'Uma seleção dos certificados que fortalecem minha jornada técnica e profissional.',
+    certifications_summary_title: 'Certificados em destaque',
+    certifications_summary_text: 'Passe pelos cards para ver cada certificação em detalhe. O carrossel também funciona no mobile.',
+    certification_item_1: 'Análise e Desenvolvimento de Sistemas',
+    certification_item_2: 'Curso .NET',
+    certification_item_3: 'freeCodeCamp',
     projects_title: 'Projetos',
     projects_desc: 'Alguns projetos desenvolvidos ao longo da minha trajetória.',
     project1_desc: 'Sistema completo de gerenciamento de vendas com autenticação JWT, dashboard interativo e integrações com APIs externas. Pipeline de vendas visual com gráficos simples em tempo real.',
@@ -79,23 +88,24 @@ const translations = {
     nav_about: 'About',
     nav_experience: 'Experience',
     nav_skills: 'Skills',
+    nav_certifications: 'Certifications',
     nav_projects: 'Projects',
     nav_contact: 'Contact',
     lang_label: 'Language',
     download_cv: 'Download resume',
-    hero_badge: 'Available for opportunities',
-    hero_subtitle: 'Full Stack developer turning business rules into elegant, high-performing products ready to scale with TypeScript, React, Node.js and .NET Core.',
+    hero_badge: 'Available for new opportunities',
+    hero_subtitle: 'Full Stack developer, turning business challenges into elegant, high-performing products ready to evolve with TypeScript, React, Node.js and .NET Core.',
     hero_projects: 'View projects',
     hero_summary: 'Quick summary',
     hero_focus_label: 'Focus',
     hero_focus_value: 'Complete web products',
-    hero_stack_label: 'Main stack',
-    hero_stack_value: 'React, Node.js, .NET',
-    hero_current_label: 'Current role',
+    hero_stack_label: 'Stack',
+    hero_stack_value: 'React, Node.js and .NET',
+    hero_current_label: 'Role',
     hero_current_value: 'Agil.net',
     hero_stat_1: 'years in technology',
     hero_stat_2: 'frontend, backend and integrations',
-    hero_stat_3: 'focus on structure and quality',
+    hero_stat_3: 'themed look with immersive focus',
     about_label: 'Who I am',
     about_title: 'About me',
     about_p1: 'I am a Full Stack Developer with experience building modern web applications, system integrations and automations. I mainly work with TypeScript, Node.js and React on the frontend, and .NET Core, NestJS and Next.js across backend and product delivery. I hold a degree in Systems Analysis and Development.',
@@ -129,6 +139,14 @@ const translations = {
     skills_frontend: 'Frontend',
     skills_database: 'Database',
     skills_devops: 'Infra / DevOps',
+    certifications_label: 'Certifications',
+    certifications_title: 'My collection',
+    certifications_desc: 'A selection of certificates that strengthen my technical and professional journey.',
+    certifications_summary_title: 'Featured certificates',
+    certifications_summary_text: 'Browse the cards to inspect each certificate in detail. The carousel also works on mobile.',
+    certification_item_1: 'Systems Analysis and Development',
+    certification_item_2: '.NET Course',
+    certification_item_3: 'freeCodeCamp',
     projects_title: 'Projects',
     projects_desc: 'A few projects built throughout my journey.',
     project1_desc: 'Complete sales management system with JWT authentication, interactive dashboard and external API integrations. Visual sales pipeline with real-time charts.',
@@ -150,7 +168,7 @@ const translations = {
 };
 
 const body = document.body;
-const langButtons = document.querySelectorAll('[data-lang-option]');
+const langSelect = document.querySelector('[data-lang-select]');
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('main section[id]');
 const mobileMenuToggle = document.querySelector('[data-mobile-menu-toggle]');
@@ -168,9 +186,9 @@ function applyTranslations(lang) {
     }
   });
 
-  langButtons.forEach((button) => {
-    button.classList.toggle('is-active', button.dataset.langOption === lang);
-  });
+  if (langSelect) {
+    langSelect.value = lang;
+  }
 }
 
 function scrollToAnchor(targetSelector) {
@@ -225,19 +243,17 @@ const revealObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12 });
 
-document.querySelectorAll('.timeline-item, .skill-card, .project-card, .contact-item, .about-content, .hero-panel-card').forEach((element) => {
+document.querySelectorAll('.timeline-item, .skill-card, .project-card, .contact-item, .about-content, .hero-panel-card, .certifications-summary-card, .certificate-carousel').forEach((element) => {
   element.style.opacity = '0';
   element.style.transform = 'translateY(24px)';
   element.style.transition = 'opacity .6s ease, transform .6s ease';
   revealObserver.observe(element);
 });
 
-langButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    const selectedLang = button.dataset.langOption;
-    if (!selectedLang) return;
-    applyTranslations(selectedLang);
-  });
+langSelect?.addEventListener('change', () => {
+  const selectedLang = langSelect.value;
+  if (!selectedLang) return;
+  applyTranslations(selectedLang);
 });
 
 const lightbox = document.querySelector('[data-project-lightbox]');
