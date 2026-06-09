@@ -249,7 +249,6 @@ footer,
   display: inline-flex;
   align-items: center;
   padding: 4px;
-  
   border: 1px solid var(--border);
   background: rgba(10, 15, 21, 0.9);
 }
@@ -1232,10 +1231,31 @@ footer {
 
   .lang-switcher {
     width: 100%;
-    max-width: 58px;
+    max-width: 56px;
     margin: 0 auto;
     padding: 4px;
     justify-content: center;
+    position: relative;
+  }
+
+  .lang-switcher::before {
+    content: '🇧🇷';
+    position: absolute;
+    inset: 5px;
+    border-radius: 8px;
+    pointer-events: none;
+    display: grid;
+    place-items: center;
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .lang-switcher[data-lang='pt-BR']::before {
+    content: '🇧🇷';
+  }
+
+  .lang-switcher[data-lang='en']::before {
+    content: '🇺🇸';
   }
 
   .lang-select {
@@ -1245,28 +1265,8 @@ footer {
     padding: 10px 0;
     text-indent: -9999px;
     color: transparent;
-    background-position:
-      center center,
-      center center,
-      0 0;
-    background-size:
-      10px 10px,
-      10px 10px,
-      100% 100%;
-  }
-
-  .lang-select[data-lang='pt-BR'] {
-    background-image:
-      radial-gradient(circle, #1f8a3b 0 35%, transparent 36%),
-      radial-gradient(circle, #f5d34b 0 35%, transparent 36%),
-      linear-gradient(135deg, rgba(13, 20, 28, 0.98), rgba(9, 14, 20, 0.98));
-  }
-
-  .lang-select[data-lang='en'] {
-    background-image:
-      radial-gradient(circle, #3b82f6 0 35%, transparent 36%),
-      radial-gradient(circle, #ef4444 0 35%, transparent 36%),
-      linear-gradient(135deg, rgba(13, 20, 28, 0.98), rgba(9, 14, 20, 0.98));
+    text-align: center;
+    background: transparent;
   }
 
   .header-cta {

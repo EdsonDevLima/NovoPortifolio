@@ -169,6 +169,7 @@ const translations = {
 
 const body = document.body;
 const langSelect = document.querySelector('[data-lang-select]');
+const langSwitcher = document.querySelector('.lang-switcher');
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('main section[id]');
 const mobileMenuToggle = document.querySelector('[data-mobile-menu-toggle]');
@@ -189,6 +190,10 @@ function applyTranslations(lang) {
   if (langSelect) {
     langSelect.value = lang;
     langSelect.dataset.lang = lang;
+  }
+
+  if (langSwitcher) {
+    langSwitcher.dataset.lang = lang;
   }
 }
 
